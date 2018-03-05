@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Kelas;
+use Validator;
 
 class KelasController extends Controller
 {
@@ -23,7 +24,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,11 +36,11 @@ class KelasController extends Controller
     public function store(Request $request)
     {
       $validator = Validator::make($request->all(), [
-       'knama' => 'required',
+       'nama' => 'required',
        ]);
        if ($validator->passes()) {
          $kelas = new Kelas();
-         $kelas->knama = $request['knama'];
+         $kelas->nama = $request['nama'];
          $kelas->save();
          $pesan = 'Data Berhasil Disimpan';
          return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
@@ -56,7 +57,8 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-        //
+      $data['kelas'] = Kelas::find($id);
+      return response()->json($data);
     }
 
     /**
@@ -67,7 +69,8 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        //
+      $data['kelas'] = Kelas::find($id);
+      return response()->json($data);
     }
 
     /**
@@ -79,7 +82,18 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $kelas = Kelas::find($id);
+      $validator = Validator::make($request->all(), [
+       'nama' => 'required',
+       ]);
+       if ($validator->passes()) {
+         $kelas->nama = $request['nama'];
+         $kelas->update();
+         $pesan = 'Data Berhasil Diperbarui';
+         return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
+       } else {
+         return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
+       }
     }
 
     /**

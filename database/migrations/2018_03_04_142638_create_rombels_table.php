@@ -14,11 +14,12 @@ class CreateRombelsTable extends Migration
     public function up()
     {
         Schema::create('rombels', function (Blueprint $table) {
-            $table->increments('rid');
+            $table->increments('id');
             $table->string('tahun_ajar');
             $table->tinyInteger('semester');
             $table->integer('kelas_id');
             $table->integer('siswa_id');
+            $table->timestamps();
         });
     }
 
