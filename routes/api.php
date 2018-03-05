@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('kelas','KelasController');
+Route::resource('rombel','RombelController');
+Route::resource('siswa','SiswaController');

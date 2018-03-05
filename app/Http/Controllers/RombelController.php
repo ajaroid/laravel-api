@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Kelas;
+use App\Rombel;
 use Validator;
 
-class KelasController extends Controller
+class RombelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-      $data['kelas'] = Kelas::all();
+      $data['rombel'] = Rombel::all();
       return response()->json($data);
     }
 
@@ -25,7 +25,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -37,11 +37,17 @@ class KelasController extends Controller
     public function store(Request $request)
     {
       $validator = Validator::make($request->all(), [
-       'nama' => 'required',
+        'tahun_ajar' => 'required',
+        'kelas_id' => 'required',
+        'siswa_id' => 'required',
+        'semester' => 'required',
        ]);
        if ($validator->passes()) {
-         $data = new Kelas();
-         $data->nama = $request['nama'];
+         $data = new Rombel();
+         $data->tahun_ajar = $request['tahun_ajar'];
+         $data->semester = $request['semester'];
+         $data->kelas_id = $request['kelas_id'];
+         $data->siswa_id = $request['siswa_id'];
          $data->save();
          $pesan = 'Data Berhasil Disimpan';
          return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
@@ -58,7 +64,7 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-      $data['kelas'] = Kelas::find($id);
+      $data['rombel'] = Rombel::find($id);
       return response()->json($data);
     }
 
@@ -70,7 +76,7 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-      $data['kelas'] = Kelas::find($id);
+      $data['rombel'] = rombel::find($id);
       return response()->json($data);
     }
 
@@ -83,13 +89,19 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $data = Kelas::find($id);
+      $data = Rombel::find($id);
       $validator = Validator::make($request->all(), [
-       'nama' => 'required',
+        'tahun_ajar' => 'required',
+        'kelas_id' => 'required',
+        'siswa_id' => 'required',
+        'semester' => 'required',
        ]);
        if ($validator->passes()) {
-         $data->nama = $request['nama'];
-         $data->update();
+         $data->tahun_ajar = $request['tahun_ajar'];
+         $data->semester = $request['semester'];
+         $data->kelas_id = $request['kelas_id'];
+         $data->siswa_id = $request['siswa_id'];
+         $data->save();
          $pesan = 'Data Berhasil Diperbarui';
          return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
        } else {
@@ -105,7 +117,7 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-      $data = Kelas::find($id);
+      $data = Rombel::find($id);
       $data->delete();
       return response()->json(['sukses'=>true]);
     }

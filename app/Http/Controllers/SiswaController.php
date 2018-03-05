@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Kelas;
+use App\Siswa;
 use Validator;
 
-class KelasController extends Controller
+class SiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,10 @@ class KelasController extends Controller
      */
     public function index()
     {
-      $data['kelas'] = Kelas::all();
+
+      $data['siswa'] = Siswa::all();
       return response()->json($data);
+
     }
 
     /**
@@ -37,11 +39,23 @@ class KelasController extends Controller
     public function store(Request $request)
     {
       $validator = Validator::make($request->all(), [
-       'nama' => 'required',
+        'nis' => 'required',
+        'nama' => 'required',
+        'jenis_kelamin' => 'required',
+        'tempat_lahir' => 'required',
+        'tanggal_lahir' => 'required',
+        'alamat' => 'required',
+        'kelas_id' => 'required',
        ]);
        if ($validator->passes()) {
-         $data = new Kelas();
+         $data = new Siswa();
+         $data->nis = $request['nis'];
          $data->nama = $request['nama'];
+         $data->jenis_kelamin = $request['jenis_kelamin'];
+         $data->tempat_lahir = $request['tempat_lahir'];
+         $data->tanggal_lahir = $request['tanggal_lahir'];
+         $data->alamat = $request['alamat'];
+         $data->kelas_id = $request['kelas_id'];
          $data->save();
          $pesan = 'Data Berhasil Disimpan';
          return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
@@ -58,7 +72,7 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-      $data['kelas'] = Kelas::find($id);
+      $data['siswa'] = Siswa::find($id);
       return response()->json($data);
     }
 
@@ -70,8 +84,8 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-      $data['kelas'] = Kelas::find($id);
-      return response()->json($data);
+        $data['siswa'] = Siswa::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -83,12 +97,24 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $data = Kelas::find($id);
+      $data = Siswa::find($id);
       $validator = Validator::make($request->all(), [
-       'nama' => 'required',
+        'nis' => 'required',
+        'nama' => 'required',
+        'jenis_kelamin' => 'required',
+        'tempat_lahir' => 'required',
+        'tanggal_lahir' => 'required',
+        'alamat' => 'required',
+        'kelas_id' => 'required',
        ]);
        if ($validator->passes()) {
+         $data->nis = $request['nis'];
          $data->nama = $request['nama'];
+         $data->jenis_kelamin = $request['jenis_kelamin'];
+         $data->tempat_lahir = $request['tempat_lahir'];
+         $data->tanggal_lahir = $request['tanggal_lahir'];
+         $data->alamat = $request['alamat'];
+         $data->kelas_id = $request['kelas_id'];
          $data->update();
          $pesan = 'Data Berhasil Diperbarui';
          return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
@@ -105,7 +131,7 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-      $data = Kelas::find($id);
+      $data = Siswa::find($id);
       $data->delete();
       return response()->json(['sukses'=>true]);
     }
