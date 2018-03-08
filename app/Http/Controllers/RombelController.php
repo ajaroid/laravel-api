@@ -14,7 +14,7 @@ class RombelController extends Controller
      */
     public function index()
     {
-      $data['rombel'] = Rombel::all();
+      $data['rombel'] = Rombel::with('Siswa','Kelas')->get();
       return response()->json($data);
     }
 
