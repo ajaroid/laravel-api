@@ -15,7 +15,8 @@ class SiswaController extends Controller
     public function index()
     {
 
-      $data['siswa'] = Siswa::all();
+      $data = Siswa::all();
+      // $data->headers->set('Content-Type', 'application/json');
       return response()->json($data);
 
     }
@@ -72,7 +73,8 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-      $data['siswa'] = Siswa::find($id);
+      $data = Siswa::find($id);
+      // $data['header'] = 
       return response()->json($data);
     }
 
@@ -84,7 +86,7 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $data['siswa'] = Siswa::find($id);
+        $data = Siswa::find($id);
         return response()->json($data);
     }
 

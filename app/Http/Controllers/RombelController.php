@@ -14,7 +14,7 @@ class RombelController extends Controller
      */
     public function index()
     {
-      $data['rombel'] = Rombel::with('Siswa','Kelas')->get();
+      $data = Rombel::with('Siswa','Kelas')->get();
       return response()->json($data);
     }
 
@@ -64,7 +64,7 @@ class RombelController extends Controller
      */
     public function show($id)
     {
-      $data['rombel'] = Rombel::find($id);
+      $data= Rombel::where('id',$id)->with('Siswa','Kelas')->first();
       return response()->json($data);
     }
 
@@ -76,7 +76,7 @@ class RombelController extends Controller
      */
     public function edit($id)
     {
-      $data['rombel'] = rombel::find($id);
+      $data = rombel::find($id);
       return response()->json($data);
     }
 
