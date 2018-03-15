@@ -19,4 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('kelas','KelasController');
 Route::resource('rombel','RombelController');
+
+Route::post('rombel-update/{id}','RombelController@update');
+
 Route::resource('siswa','SiswaController');

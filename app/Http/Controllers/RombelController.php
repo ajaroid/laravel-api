@@ -89,6 +89,8 @@ class RombelController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+      // return[1,2,3];
       $data = Rombel::find($id);
       $validator = Validator::make($request->all(), [
         'tahun_ajar' => 'required',
@@ -108,6 +110,28 @@ class RombelController extends Controller
          return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
        }
     }
+
+    // public function updateRombel(Request $request, $id)
+    // {
+    //   $data = Rombel::find($id);
+    //   $validator = Validator::make($request->all(), [
+    //     'tahun_ajar' => 'required',
+    //     'kelas_id' => 'required',
+    //     'siswa_id' => 'required',
+    //     'semester' => 'required',
+    //    ]);
+    //    if ($validator->passes()) {
+    //      $data->tahun_ajar = $request['tahun_ajar'];
+    //      $data->semester = $request['semester'];
+    //      $data->kelas_id = $request['kelas_id'];
+    //      $data->siswa_id = $request['siswa_id'];
+    //      $data->save();
+    //      $pesan = 'Data Berhasil Diperbarui';
+    //      return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
+    //    } else {
+    //      return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
+    //    }
+    // }
 
     /**
      * Remove the specified resource from storage.

@@ -14,7 +14,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-      $data['kelas'] = Kelas::all();
+      $data= Kelas::all();
       return response()->json($data);
     }
 
@@ -58,7 +58,7 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-      $data['kelas'] = Kelas::find($id);
+      $data= Kelas::find($id);
       return response()->json($data);
     }
 
@@ -70,7 +70,7 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-      $data['kelas'] = Kelas::find($id);
+      $data= Kelas::find($id);
       return response()->json($data);
     }
 
