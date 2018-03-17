@@ -43,8 +43,8 @@ class SiswaController extends Controller
         'nis' => 'required',
         'nama' => 'required',
         'jenis_kelamin' => 'required',
-        'tempat_lahir' => 'required',
-        'tanggal_lahir' => 'required',
+        'lahir_tempat' => 'required',
+        'lahir_tanggal' => 'required',
         'alamat' => 'required',
         'kelas_id' => 'required',
        ]);
@@ -53,8 +53,8 @@ class SiswaController extends Controller
          $data->nis = $request['nis'];
          $data->nama = $request['nama'];
          $data->jenis_kelamin = $request['jenis_kelamin'];
-         $data->tempat_lahir = $request['tempat_lahir'];
-         $data->tanggal_lahir = $request['tanggal_lahir'];
+         $data->lahir_tempat = $request['lahir_tempat'];
+         $data->lahir_tanggal = $request['lahir_tanggal'];
          $data->alamat = $request['alamat'];
          $data->save();
          $pesan = 'Data Berhasil Disimpan';
@@ -103,8 +103,8 @@ class SiswaController extends Controller
         'nis' => 'required',
         'nama' => 'required',
         'jenis_kelamin' => 'required',
-        'tempat_lahir' => 'required',
-        'tanggal_lahir' => 'required',
+        'lahir_tempat' => 'required',
+        'lahir_tanggal' => 'required',
         'alamat' => 'required',
         'kelas_id' => 'required',
        ]);
@@ -112,8 +112,8 @@ class SiswaController extends Controller
          $data->nis = $request['nis'];
          $data->nama = $request['nama'];
          $data->jenis_kelamin = $request['jenis_kelamin'];
-         $data->tempat_lahir = $request['tempat_lahir'];
-         $data->tanggal_lahir = $request['tanggal_lahir'];
+         $data->lahir_tempat = $request['lahir_tempat'];
+         $data->lahir_tanggal = $request['lahir_tanggal'];
          $data->alamat = $request['alamat'];
          $data->update();
          $pesan = 'Data Berhasil Diperbarui';
