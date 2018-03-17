@@ -18,8 +18,8 @@ class CreateSiswasTable extends Migration
             $table->string('nis');
             $table->string('nama');
             $table->tinyInteger('jenis_kelamin');
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
+            $table->string('lahir_tempat');
+            $table->date('lahir_tanggal');
             $table->string('alamat');
             $table->timestamps();
         });

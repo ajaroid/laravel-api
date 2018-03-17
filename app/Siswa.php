@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Siswa extends Model
 {
-    protected $fillable = ['id','nis','nama','jenis_kelamin','tempat_lahir','tanggal_lahir','alamat'];
+    protected $fillable = ['id','nis','nama','jenis_kelamin','lahir_tempat','lahir_tanggal','alamat'];
 
     public function rombel()
     {
