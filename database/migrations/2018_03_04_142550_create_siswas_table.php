@@ -21,7 +21,6 @@ class CreateSiswasTable extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('alamat');
-            $table->integer('kelas_id');
             $table->timestamps();
         });
     }

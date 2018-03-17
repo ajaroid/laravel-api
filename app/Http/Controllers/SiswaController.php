@@ -56,7 +56,6 @@ class SiswaController extends Controller
          $data->tempat_lahir = $request['tempat_lahir'];
          $data->tanggal_lahir = $request['tanggal_lahir'];
          $data->alamat = $request['alamat'];
-         $data->kelas_id = $request['kelas_id'];
          $data->save();
          $pesan = 'Data Berhasil Disimpan';
          return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
@@ -74,7 +73,7 @@ class SiswaController extends Controller
     public function show($id)
     {
       $data = Siswa::find($id);
-      // $data['header'] = 
+      // $data['header'] =
       return response()->json($data);
     }
 
@@ -116,7 +115,6 @@ class SiswaController extends Controller
          $data->tempat_lahir = $request['tempat_lahir'];
          $data->tanggal_lahir = $request['tanggal_lahir'];
          $data->alamat = $request['alamat'];
-         $data->kelas_id = $request['kelas_id'];
          $data->update();
          $pesan = 'Data Berhasil Diperbarui';
          return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);

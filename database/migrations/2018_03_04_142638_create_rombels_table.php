@@ -17,9 +17,11 @@ class CreateRombelsTable extends Migration
             $table->increments('id');
             $table->string('tahun_ajar');
             $table->tinyInteger('semester');
-            $table->integer('kelas_id');
-            $table->integer('siswa_id');
             $table->timestamps();
+            $table->integer('kelas_id')->unsigned();
+            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('siswa_id')->unsigned();
+            $table->foreign('siswa_id')->references('id')->on('siswas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
