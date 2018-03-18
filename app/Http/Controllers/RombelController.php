@@ -17,7 +17,10 @@ class RombelController extends Controller
      */
     public function index()
     {
-        $data = DB::table('rombels')->select('tahun_ajar', 'kelas_id')->groupBy('tahun_ajar', 'kelas_id')->get();
+        $data = DB::table('rombels')
+            ->select('tahun_ajar', 'kelas_id', 'semester')
+            ->groupBy('tahun_ajar', 'kelas_id', 'semester')
+            ->get();
         return response()->json($data);
     }
 

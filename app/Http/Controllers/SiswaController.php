@@ -15,7 +15,7 @@ class SiswaController extends Controller
     public function index()
     {
 
-        $data = Siswa::all();
+        $data = Siswa::orderBy('id', 'desc')->get();
         // $data->headers->set('Content-Type', 'application/json');
         return response()->json($data);
 

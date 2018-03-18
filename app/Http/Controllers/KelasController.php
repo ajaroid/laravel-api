@@ -14,7 +14,7 @@ class KelasController extends Controller
      */
     public function index()
     {
-        $data= Kelas::all();
+        $data= Kelas::orderBy('id', 'desc')->get();
         return response()->json($data);
     }
 
