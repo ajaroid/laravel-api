@@ -15,9 +15,9 @@ class SiswaController extends Controller
     public function index()
     {
 
-      $data = Siswa::all();
-      // $data->headers->set('Content-Type', 'application/json');
-      return response()->json($data);
+        $data = Siswa::all();
+        // $data->headers->set('Content-Type', 'application/json');
+        return response()->json($data);
 
     }
 
@@ -39,29 +39,28 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-      $validator = Validator::make($request->all(), [
-        'nis' => 'required',
-        'nama' => 'required',
-        'jenis_kelamin' => 'required',
-        'lahir_tempat' => 'required',
-        'lahir_tanggal' => 'required',
-        'alamat' => 'required',
-        'kelas_id' => 'required',
-       ]);
-       if ($validator->passes()) {
-         $data = new Siswa();
-         $data->nis = $request['nis'];
-         $data->nama = $request['nama'];
-         $data->jenis_kelamin = $request['jenis_kelamin'];
-         $data->lahir_tempat = $request['lahir_tempat'];
-         $data->lahir_tanggal = $request['lahir_tanggal'];
-         $data->alamat = $request['alamat'];
-         $data->save();
-         $pesan = 'Data Berhasil Disimpan';
-         return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
-       } else {
-         return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
-       }
+        $validator = Validator::make($request->all(), [
+            'nis' => 'required',
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',
+            'lahir_tempat' => 'required',
+            'lahir_tanggal' => 'required',
+            'alamat' => 'required',
+        ]);
+        if ($validator->passes()) {
+            $data = new Siswa();
+            $data->nis = $request['nis'];
+            $data->nama = $request['nama'];
+            $data->jenis_kelamin = $request['jenis_kelamin'];
+            $data->lahir_tempat = $request['lahir_tempat'];
+            $data->lahir_tanggal = $request['lahir_tanggal'];
+            $data->alamat = $request['alamat'];
+            $data->save();
+            $pesan = 'Data Berhasil Disimpan';
+            return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
+        } else {
+            return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
+        }
     }
 
     /**
@@ -72,9 +71,9 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-      $data = Siswa::find($id);
-      // $data['header'] =
-      return response()->json($data);
+        $data = Siswa::find($id);
+        // $data['header'] =
+        return response()->json($data);
     }
 
     /**
@@ -98,29 +97,28 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $data = Siswa::find($id);
-      $validator = Validator::make($request->all(), [
-        'nis' => 'required',
-        'nama' => 'required',
-        'jenis_kelamin' => 'required',
-        'lahir_tempat' => 'required',
-        'lahir_tanggal' => 'required',
-        'alamat' => 'required',
-        'kelas_id' => 'required',
-       ]);
-       if ($validator->passes()) {
-         $data->nis = $request['nis'];
-         $data->nama = $request['nama'];
-         $data->jenis_kelamin = $request['jenis_kelamin'];
-         $data->lahir_tempat = $request['lahir_tempat'];
-         $data->lahir_tanggal = $request['lahir_tanggal'];
-         $data->alamat = $request['alamat'];
-         $data->update();
-         $pesan = 'Data Berhasil Diperbarui';
-         return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
-       } else {
-         return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
-       }
+        $data = Siswa::find($id);
+        $validator = Validator::make($request->all(), [
+            'nis' => 'required',
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',
+            'lahir_tempat' => 'required',
+            'lahir_tanggal' => 'required',
+            'alamat' => 'required',
+        ]);
+        if ($validator->passes()) {
+            $data->nis = $request['nis'];
+            $data->nama = $request['nama'];
+            $data->jenis_kelamin = $request['jenis_kelamin'];
+            $data->lahir_tempat = $request['lahir_tempat'];
+            $data->lahir_tanggal = $request['lahir_tanggal'];
+            $data->alamat = $request['alamat'];
+            $data->update();
+            $pesan = 'Data Berhasil Diperbarui';
+            return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
+        } else {
+            return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
+        }
     }
 
     /**
@@ -131,8 +129,8 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-      $data = Siswa::find($id);
-      $data->delete();
-      return response()->json(['sukses'=>true]);
+        $data = Siswa::find($id);
+        $data->delete();
+        return response()->json(['sukses' => true]);
     }
 }

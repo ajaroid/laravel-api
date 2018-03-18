@@ -14,8 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-      $data= Kelas::all();
-      return response()->json($data);
+        $data= Kelas::all();
+        return response()->json($data);
     }
 
     /**
@@ -36,18 +36,25 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-      $validator = Validator::make($request->all(), [
-       'nama' => 'required',
-       ]);
-       if ($validator->passes()) {
-         $data = new Kelas();
-         $data->nama = $request['nama'];
-         $data->save();
-         $pesan = 'Data Berhasil Disimpan';
-         return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
-       } else {
-         return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
-       }
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+        ]);
+        if ($validator->passes()) {
+            $data = new Kelas();
+            $data->nama = $request['nama'];
+            $data->save();
+            $pesan = 'Data Berhasil Disimpan';
+            return response()->json([
+                'sukses' => true,
+                'pesan' => $pesan,
+                'data' => $request->all()
+            ]);
+        } else {
+            return response()->json([
+                'sukses' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
     }
 
     /**
@@ -58,8 +65,8 @@ class KelasController extends Controller
      */
     public function show($id)
     {
-      $data= Kelas::find($id);
-      return response()->json($data);
+        $data= Kelas::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -70,8 +77,8 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-      $data= Kelas::find($id);
-      return response()->json($data);
+        $data= Kelas::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -83,18 +90,18 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $data = Kelas::find($id);
-      $validator = Validator::make($request->all(), [
-       'nama' => 'required',
-       ]);
-       if ($validator->passes()) {
-         $data->nama = $request['nama'];
-         $data->update();
-         $pesan = 'Data Berhasil Diperbarui';
-         return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
-       } else {
-         return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
-       }
+        $data = Kelas::find($id);
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+        ]);
+        if ($validator->passes()) {
+            $data->nama = $request['nama'];
+            $data->update();
+            $pesan = 'Data Berhasil Diperbarui';
+            return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
+        } else {
+            return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
+        }
     }
 
     /**
@@ -105,8 +112,8 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-      $data = Kelas::find($id);
-      $data->delete();
-      return response()->json(['sukses'=>true]);
+        $data = Kelas::find($id);
+        $data->delete();
+        return response()->json(['sukses' => true]);
     }
 }

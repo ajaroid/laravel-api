@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
-    protected $fillable = ['id','nama'];
+    protected $fillable = ['id', 'nama'];
 
     public function rombel()
     {
-      return $this->hasMany(Rombel::class);
+        return $this->hasMany(Rombel::class);
     }
 }
