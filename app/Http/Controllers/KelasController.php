@@ -98,9 +98,9 @@ class KelasController extends Controller
             $data->nama = $request['nama'];
             $data->update();
             $pesan = 'Data Berhasil Diperbarui';
-            return response()->json(['sukses'=>true,'pesan'=>$pesan,'data'=>$request->all()]);
+            return response()->json(['sukses' => true, 'pesan' => $pesan, 'data' => $request->all()]);
         } else {
-            return response()->json(['sukses'=>false,'errors'=>$validator->errors()]);
+            return response()->json(['sukses' => false,'errors' => $validator->errors()]);
         }
     }
 
