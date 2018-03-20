@@ -21,6 +21,7 @@ class RombelController extends Controller
             ->select('tahun_ajar', 'kelas_id', 'semester', 'kelas.nama as kelas_nama')
             ->join('kelas', 'rombels.kelas_id', '=', 'kelas.id')
             ->groupBy('tahun_ajar', 'kelas_id', 'semester')
+            ->orderBy('tahun_ajar', 'desc')
             ->get();
         return response()->json($data);
     }
