@@ -60,7 +60,7 @@ class RombelController extends Controller
     public function show($tahun_ajar, $kelas_id, $semester)
     {
         $kelas = Kelas::find($kelas_id);
-        $siswa_members = Rombel::where([
+        $siswaMembers = Rombel::where([
             'tahun_ajar' => $tahun_ajar,
             'kelas_id' => $kelas_id,
             'semester' => $semester
@@ -69,11 +69,15 @@ class RombelController extends Controller
         ->map(function ($item) {
             return $item['siswa'];
         });
+        $siswaIds = $siswaMembers->map(function ($item) {
+            return $item['id'];
+        });
         return [
             'tahun_ajar' => $tahun_ajar,
             'kelas' => $kelas,
             'semester' => $semester,
-            'siswa_members' => $siswa_members
+            'siswa_members' => $siswaMembers,
+            'siswa_ids' => $siswaIds
         ];
     }
 
@@ -100,7 +104,7 @@ class RombelController extends Controller
                 ];
             })->toArray();
             DB::table('rombels')->insert($newItems);
-            return ['status' => true, 'pesan' => 'Sukses'];
+            return ['sukses' => true, 'pesan' => 'Sukses'];
         } else {
             return [
                 'sukses' => false,
