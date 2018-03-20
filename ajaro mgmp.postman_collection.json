@@ -244,6 +244,110 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "rombongan belajar",
+			"description": "",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tahun_ajar\": 2018,\n\t\"kelas_id\": 1,\n\t\"semester\": 1,\n\t\"siswa_ids\": [1,2,3]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/rombel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rombel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{base_url}}/api/rombel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rombel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tahun_ajar\": \"2017\",\n\t\"kelas_id\": 2,\n\t\"semester\": 2,\n\t\"siswa_ids\": [4,5]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/rombel/2018/1/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rombel",
+								"2018",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{base_url}}/api/rombel/2018/1/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rombel",
+								"2018",
+								"1",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
