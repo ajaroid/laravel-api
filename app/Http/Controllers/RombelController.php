@@ -37,6 +37,17 @@ class RombelController extends Controller
             if (!$request->has('siswa_ids')) {
                 return ['sukses' => false, 'errors' => 'missing siswa ids'];
             }
+            $existing = Rombel::where([
+                'tahun_ajar' => $request['tahun_ajar'],
+                'kelas_id' => $request['kelas_id'],
+                'semester' => $request['semester']
+            ])->get();
+            if (!$existing->isEmpty()) {
+                return [
+                    'sukses' => false,
+                    'errors' => 'sudah ada rombongan belajar untuk tahun ' . $request['tahun_ajar'] . ' kelas id ' . $request['kelas_id'] . ' semester ' . $request['semester']
+                ];
+            }
             $newItems = collect($request->input('siswa_ids'))->map(function ($item) use ($request) {
                 return [
                     'tahun_ajar' => $request['tahun_ajar'],
