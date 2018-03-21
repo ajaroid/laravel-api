@@ -97,50 +97,42 @@ class DatabaseSeeder extends Seeder
 
         Rombel::create([
             'tahun_ajar' => 2018,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 1
         ]);
         Rombel::create([
             'tahun_ajar' => 2018,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 2
         ]);
         Rombel::create([
             'tahun_ajar' => 2018,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 3
         ]);
         Rombel::create([
             'tahun_ajar' => 2018,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 4
         ]);
 
         Rombel::create([
             'tahun_ajar' => 2019,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 1
         ]);
         Rombel::create([
             'tahun_ajar' => 2019,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 2
         ]);
         Rombel::create([
             'tahun_ajar' => 2019,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 3
         ]);
         Rombel::create([
             'tahun_ajar' => 2019,
-            'semester' => 1,
             'kelas_id' => 1,
             'siswa_id' => 4
         ]);

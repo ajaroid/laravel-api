@@ -16,7 +16,6 @@ class CreateRombelsTable extends Migration
         Schema::create('rombels', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tahun_ajar');
-            $table->tinyInteger('semester');
             $table->timestamps();
             $table->integer('kelas_id')->unsigned();
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');

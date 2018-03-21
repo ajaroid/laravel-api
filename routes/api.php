@@ -21,7 +21,7 @@ Route::resource('kelas','KelasController');
 Route::resource('siswa','SiswaController');
 
 Route::get('rombel', 'RombelController@index');
-Route::get('rombel/{tahun_ajar}/{kelas_id}/{semester}', 'RombelController@show');
+Route::get('rombel/{tahun_ajar}/{kelas_id}', 'RombelController@show');
 Route::post('rombel', 'RombelController@store');
-Route::put('rombel/{tahun_ajar}/{kelas_id}/{semester}', 'RombelController@update');
-Route::delete('rombel/{tahun_ajar}/{kelas_id}/{semester}', 'RombelController@destroy');
+Route::put('rombel/{tahun_ajar}/{kelas_id}', 'RombelController@update');
+Route::delete('rombel/{tahun_ajar}/{kelas_id}', 'RombelController@destroy');

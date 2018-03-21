@@ -18,9 +18,9 @@ class RombelController extends Controller
     public function index()
     {
         $data = DB::table('rombels')
-            ->select('tahun_ajar', 'kelas_id', 'semester', 'kelas.nama as kelas_nama')
+            ->select('tahun_ajar', 'kelas_id', 'kelas.nama as kelas_nama')
             ->join('kelas', 'rombels.kelas_id', '=', 'kelas.id')
-            ->groupBy('tahun_ajar', 'kelas_id', 'semester')
+            ->groupBy('tahun_ajar', 'kelas_id')
             ->orderBy('tahun_ajar', 'desc')
             ->get();
         return response()->json($data);
@@ -31,7 +31,6 @@ class RombelController extends Controller
         $validator = Validator::make($request->all(), [
             'tahun_ajar' => 'required',
             'kelas_id' => 'required',
-            'semester' => 'required',
         ]);
         if ($validator->passes()) {
             if (!$request->has('siswa_ids')) {
@@ -40,19 +39,17 @@ class RombelController extends Controller
             $existing = Rombel::where([
                 'tahun_ajar' => $request['tahun_ajar'],
                 'kelas_id' => $request['kelas_id'],
-                'semester' => $request['semester']
             ])->get();
             if (!$existing->isEmpty()) {
                 return [
                     'sukses' => false,
-                    'errors' => 'sudah ada rombongan belajar untuk tahun ' . $request['tahun_ajar'] . ' kelas id ' . $request['kelas_id'] . ' semester ' . $request['semester']
+                    'errors' => 'sudah ada rombongan belajar untuk tahun ' . $request['tahun_ajar'] . ' kelas id ' . $request['kelas_id']
                 ];
             }
             $newItems = collect($request->input('siswa_ids'))->map(function ($item) use ($request) {
                 return [
                     'tahun_ajar' => $request['tahun_ajar'],
                     'kelas_id' => $request['kelas_id'],
-                    'semester' => $request['semester'],
                     'siswa_id' => $item
                 ];
             })->toArray();
@@ -69,13 +66,12 @@ class RombelController extends Controller
         }
     }
 
-    public function show($tahun_ajar, $kelas_id, $semester)
+    public function show($tahun_ajar, $kelas_id)
     {
         $kelas = Kelas::find($kelas_id);
         $siswaMembers = Rombel::where([
             'tahun_ajar' => $tahun_ajar,
             'kelas_id' => $kelas_id,
-            'semester' => $semester
         ])->with(['kelas', 'siswa'])
         ->get()
         ->map(function ($item) {
@@ -87,31 +83,28 @@ class RombelController extends Controller
         return [
             'tahun_ajar' => $tahun_ajar,
             'kelas' => $kelas,
-            'semester' => $semester,
             'siswa_members' => $siswaMembers,
             'siswa_ids' => $siswaIds
         ];
     }
 
-    public function update(Request $request, $tahun_ajar, $kelas_id, $semester)
+    public function update(Request $request, $tahun_ajar, $kelas_id)
     {
         $validator = Validator::make($request->all(), [
             'tahun_ajar' => 'required',
             'kelas_id' => 'required',
-            'semester' => 'required',
         ]);
         if ($validator->passes()) {
             if (!$request->has('siswa_ids')) {
                 return ['sukses' => false, 'errors' => 'missing siswa ids'];
             }
 
-            Rombel::where(['tahun_ajar' => $tahun_ajar, 'kelas_id' => $kelas_id, 'semester' => $semester])->delete();
+            Rombel::where(['tahun_ajar' => $tahun_ajar, 'kelas_id' => $kelas_id])->delete();
 
-            $newItems = collect($request->input('siswa_ids'))->map(function ($item) use ($tahun_ajar, $kelas_id, $semester) {
+            $newItems = collect($request->input('siswa_ids'))->map(function ($item) use ($tahun_ajar, $kelas_id) {
                 return [
                     'tahun_ajar' => $tahun_ajar,
                     'kelas_id' => $kelas_id,
-                    'semester' => $semester,
                     'siswa_id' => $item
                 ];
             })->toArray();
@@ -125,9 +118,9 @@ class RombelController extends Controller
         }
     }
 
-    public function destroy($tahun_ajar, $kelas_id, $semester)
+    public function destroy($tahun_ajar, $kelas_id)
     {
-        Rombel::where(['tahun_ajar' => $tahun_ajar, 'kelas_id' => $kelas_id, 'semester' => $semester])->delete();
+        Rombel::where(['tahun_ajar' => $tahun_ajar, 'kelas_id' => $kelas_id])->delete();
         return [
             'sukses' => true,
             'pesan' => 'Sukses'
