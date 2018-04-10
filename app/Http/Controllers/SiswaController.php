@@ -16,7 +16,6 @@ class SiswaController extends Controller
     {
 
         $data = Siswa::orderBy('id', 'desc')->get();
-        // $data->headers->set('Content-Type', 'application/json');
         return response()->json($data);
 
     }

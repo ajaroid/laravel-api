@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rombel extends Model
 {
+    public $timestamps = false;
     protected $fillable = ['tahun_ajar', 'siswa_id', 'kelas_id'];
 
     public function siswa()

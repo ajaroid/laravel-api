@@ -16,6 +16,7 @@ class KelasController extends Controller
     {
         $data= Kelas::orderBy('id', 'desc')->get();
         return response()->json($data);
+        // return "HALLOOOO abc";
     }
 
     /**

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Siswa extends Model
 {
+    public $timestamps = false;
     protected $fillable = ['id', 'nis', 'nama', 'jenis_kelamin', 'lahir_tempat', 'lahir_tanggal', 'alamat'];
 
     public function rombel()
     {
-        return $this->hasMany(Rombel::class);
+      return $this->hasMany(Rombel::class);
     }
 }

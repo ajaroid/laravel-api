@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Rombel;
 use App\Kelas;
+use App\Siswa;
 use Validator;
-
+use DB;
 class RombelController extends Controller
 {
     /**
